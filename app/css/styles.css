@@ -1,63 +1,190 @@
+/* Variables couleurs (tes couleurs) */
+:root {
+    --primary: #1a73e8;
+    --secondary: #f8f9fa;
+    --danger: #dc3545;
+    --success: #28a745;
+    --text: #333;
+    --white: #ffffff91;
+}
+
+/* Reset + base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    background-color: rgba(173, 216, 230, 0.666);
+    font-family: system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    color: var(--text);
+    background-color: lightblue;
 }
 
-section {
-    border: 2px solid lightgray;
-    border-radius: 4px;
-    background-color: lightblue;
-    width: 500px;
-    margin: 0 auto;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.516);
+
+/* Typo */
+h1, h2 {
+    text-align: center;
+    margin: 2rem;
+    color: var(--text);
 }
+
+h1 { font-size: clamp(2rem, 6vw, 3.5rem); }
+h2 { 
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin-top: 20px;
+}
+
+/* Flash message */
+form p.flash {
+    color: #dc3545;
+    background: none;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+}
+
+h1 p.flash {
+    color: #dc3545;
+    background: none;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+}
+
+
+/* Formulaire centré responsive */
+section {
+    background: var(--white);
+    padding: 0 2rem 2rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    max-width: 500px;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 2px 10px rgba(0,0,0,0.1),    /* Très léger */
+        0 1px 4px rgba(0,0,0,0.8);
+}
+
+section.hero {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+    p {
+        font-size: 1.5rem;
+    }
+    a{
+        color: white;
+        text-decoration: none;
+    }
+    div {
+
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    }
+    button {
+        width: 300px;
+        padding: 1rem;
+    }
+}
+
+
+
+body.page-profil section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+body.page-profil section img {
+    border-radius: 1.2rem;
+}
+
 
 .form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 2rem;
+    gap: clamp(1.2rem, 3vw, 1.8rem);
 }
 
-.form > div {              
-    display: flex;        
-    flex-direction: column; 
+/* Champs */
+.form > div {
+    display: flex;
+    flex-direction: column;
     gap: 0.5rem;
 }
 
-.form label {
-    font-weight: bold;
+label {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.form input {
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+input {
+    padding: 1rem 1.2rem;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
     font-size: 1rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.516);
+    transition: all 0.3s ease;
+    background: var(--white);
+    box-shadow: 
+        0 2px 10px rgba(0,0,0,0.1),    /* Très léger */
+        0 1px 4px rgba(0,0,0,0.8);
 }
 
-.form button {
-    background: #007bff;
-    color: white;
-    padding: auto 1rem;
+input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.1);
+    transform: translateY(-1px);
+}
+
+/* Bouton */
+button, .btn-deconnexion {
+    background: linear-gradient(135deg, var(--primary) 0%, #0d47a1 100%);
+    color: var(--white);
     border: none;
-    border-radius: 4px;
-    font-size: 1rem;
+    padding: 1.2rem 2rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
     cursor: pointer;
-    margin-top: 20px;
-    height: 40px;
-    width: 120px;
-    margin: 0 auto;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.516);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 1rem;
 }
 
-.form button:hover {
-    background: #0056b3;
+
+
+button:hover, .btn-deconnexion:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(26, 115, 232, 0.4);
 }
 
-h1 {
-    text-align: center;
+/* Responsive */
+@media (max-width: 480px) {
+    body {
+        padding: 1rem;
+    }
+    
+    section {
+        padding: 1.5rem;
+        margin: 1rem 0;
+    }
 }
